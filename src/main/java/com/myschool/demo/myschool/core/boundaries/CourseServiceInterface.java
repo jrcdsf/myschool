@@ -9,5 +9,5 @@ public interface CourseServiceInterface {
   boolean delete(long id);
   List<Course> findAll();
   Optional<Course> findById(long id);
-  Optional<List<Course>> findByName(String name);
+  Optional<Course> findByName(String name);
 }

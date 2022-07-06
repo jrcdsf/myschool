@@ -47,12 +47,11 @@ public class CourseService implements CourseServiceInterface {
   }
 
   @Override
-  public Optional<List<Course>> findByName(String name) {
-    Optional<List<CourseDto>> list = repository.findByName(
+  public Optional<Course> findByName(String name) {
+    Optional<CourseDto> courseDto = repository.findByName(
         name);
-    if (list.isPresent()) {
-      List<Course> res = list.get().stream().map(c -> mapper.toCourse(c, new CycleAvoidingMappingContext()))
-          .collect(Collectors.toList());
+    if (courseDto.isPresent()) {
+      Course res = mapper.toCourse(courseDto.get(), new CycleAvoidingMappingContext());
       return Optional.of(res);
     }
     return Optional.empty();

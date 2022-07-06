@@ -39,7 +39,7 @@ public class CourseUseCase {
     return service.findById(id);
   }
 
-  public Optional<List<Course>> findCourse(String name) {
+  public Optional<Course> findCourse(String name) {
     return service.findByName(name);
   }
 

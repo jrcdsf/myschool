@@ -1,5 +1,6 @@
 package com.myschool.demo.myschool.controllers;
 
+import com.myschool.demo.myschool.core.entities.Course;
 import com.myschool.demo.myschool.core.entities.Student;
 import com.myschool.demo.myschool.core.usecases.StudentUseCase;
 import com.myschool.demo.myschool.infra.models.CreateStudentRequest;
@@ -56,6 +57,16 @@ public class StudentController {
           .map(student -> new ResponseEntity<>(student, HttpStatus.OK))
           .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+  }
+
+  @GetMapping(value = "/{id}")
+  @ResponseBody
+  public ResponseEntity<Student> findStudentById(@PathVariable long id) {
+
+    Optional<Student> response = useCase.findStudent(id);
+    return response
+        .map(student  -> new ResponseEntity<>(student, HttpStatus.OK))
+        .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
   }
 
   @DeleteMapping(value = "/{id}")

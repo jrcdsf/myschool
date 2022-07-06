@@ -4,6 +4,7 @@ import com.myschool.demo.myschool.core.entities.Course;
 import com.myschool.demo.myschool.core.usecases.CourseUseCase;
 import com.myschool.demo.myschool.infra.models.CreateCourseRequest;
 import com.myschool.demo.myschool.infra.models.UpdateCourseRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,10 +51,12 @@ public class CourseController {
       return new ResponseEntity<>(response, HttpStatus.OK);
       }
     else {
-      Optional<List<Course>> response = useCase.findCourse(name);
-      return response
-          .map(course -> new ResponseEntity<>(course, HttpStatus.OK))
-          .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+      Optional<Course> response = useCase.findCourse(name);
+      List<Course> list = new ArrayList<>();
+      if (response.isPresent()){
+        list.add(response.get());
+        return new ResponseEntity<>(list, HttpStatus.OK);
+      } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
 
