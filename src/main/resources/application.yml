@@ -22,7 +22,7 @@ limits:
     students:
       max: 50
   student:
-    course:
+    courses:
       max: 5
 
 

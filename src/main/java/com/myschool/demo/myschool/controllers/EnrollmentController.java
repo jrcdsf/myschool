@@ -1,6 +1,7 @@
 package com.myschool.demo.myschool.controllers;
 
 import com.myschool.demo.myschool.core.entities.Student;
+import com.myschool.demo.myschool.core.exceptions.BusinessException;
 import com.myschool.demo.myschool.core.usecases.EnrollmentUseCase;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,8 @@ public class EnrollmentController {
   private EnrollmentUseCase useCase;
 
   @PatchMapping(value = "/student/{studentId}/course/{courseId}")
-  public ResponseEntity<Student> enrollStudentToCourse(@PathVariable long studentId, @PathVariable long courseId) {
+  public ResponseEntity<Student> enrollStudentToCourse(@PathVariable long studentId, @PathVariable long courseId)
+      throws BusinessException {
     Optional<Student> response = useCase.enrollToCourse(studentId, courseId);
     return response.map(student -> new ResponseEntity<>(student, HttpStatus.OK))
         .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));

@@ -51,7 +51,7 @@ public class StudentDto implements Serializable {
 
   @ManyToMany(fetch = FetchType.LAZY,
       cascade = {
-          CascadeType.ALL
+          CascadeType.PERSIST
       })
   @JoinTable(
       name = "student_course",

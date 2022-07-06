@@ -10,4 +10,5 @@ public interface CourseServiceInterface {
   List<Course> findAll();
   Optional<Course> findById(long id);
   Optional<Course> findByName(String name);
+  int countStudentsByCourse(long id);
 }

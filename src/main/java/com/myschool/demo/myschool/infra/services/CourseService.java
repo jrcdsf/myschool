@@ -30,6 +30,7 @@ public class CourseService implements CourseServiceInterface {
   @Override
   public boolean delete(long id) {
     if (repository.existsById(id)) {
+      repository.deleteStudentCourseByCourseId(id);
       repository.deleteById(id);
       return true;
     }
@@ -55,5 +56,10 @@ public class CourseService implements CourseServiceInterface {
       return Optional.of(res);
     }
     return Optional.empty();
+  }
+
+  @Override
+  public int countStudentsByCourse(long id) {
+    return repository.countStudentCourseByCourseId(id);
   }
 }

@@ -32,6 +32,7 @@ public class StudentService implements StudentServiceInterface {
   @Override
   public boolean delete(long id) {
     if (repository.existsById(id)){
+      repository.deleteStudentCourseByStudentId(id);
       repository.deleteById(id);
       return true;
     }
