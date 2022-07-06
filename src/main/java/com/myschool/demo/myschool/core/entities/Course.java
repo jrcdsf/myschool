@@ -1,8 +1,5 @@
 package com.myschool.demo.myschool.core.entities;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class Course {
   private long id;
   private String name;
@@ -12,6 +9,12 @@ public class Course {
   }
 
   public Course(String name, String description) {
+    this.name = name;
+    this.description = description;
+  }
+
+  public Course(long id, String name, String description) {
+    this.id = id;
     this.name = name;
     this.description = description;
   }

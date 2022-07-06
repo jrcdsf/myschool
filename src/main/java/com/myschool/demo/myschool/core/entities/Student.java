@@ -21,6 +21,13 @@ public class Student {
     this.gender = gender;
   }
 
+  public Student(long id, String name, String birth, String gender) {
+    this.id = id;
+    this.name = name;
+    this.birth = birth;
+    this.gender = gender;
+  }
+
   public long getId() {
     return id;
   }

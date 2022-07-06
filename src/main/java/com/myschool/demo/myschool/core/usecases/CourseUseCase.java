@@ -19,6 +19,14 @@ public class CourseUseCase {
     return service.save(course);
   }
 
+  public Optional<Course> updateCourse(Course course) {
+    Optional<Course> retrieved = service.findById(course.getId());
+    if (retrieved.isPresent()) {
+      return Optional.of(service.save(course));
+    }
+    return Optional.empty();
+  }
+
   public List<Course> listCourses(){
     return service.findAll();
   }

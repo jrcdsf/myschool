@@ -3,6 +3,7 @@ package com.myschool.demo.myschool.controllers;
 import com.myschool.demo.myschool.core.entities.Student;
 import com.myschool.demo.myschool.core.usecases.StudentUseCase;
 import com.myschool.demo.myschool.infra.models.CreateStudentRequest;
+import com.myschool.demo.myschool.infra.models.UpdateStudentRequest;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +32,15 @@ public class StudentController {
   public Student createStudent(@RequestBody CreateStudentRequest request) {
     return useCase.addStudent(
         new Student(request.getName(), request.getBirth(), request.getGender()));
+  }
+
+  @PatchMapping
+  @ResponseBody
+  public ResponseEntity<Student> updateStudent(@RequestBody UpdateStudentRequest request){
+    Optional<Student> response = useCase.updateStudent(
+        new Student(request.getId(), request.getName(), request.getBirth(), request.getGender()));
+    return response.map(student -> new ResponseEntity<>(student, HttpStatus.OK))
+        .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
   }
 
   @GetMapping

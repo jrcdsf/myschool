@@ -19,6 +19,15 @@ public class StudentUseCase {
     return service.save(student);
   }
 
+  public Optional<Student> updateStudent(Student student) {
+    Optional<Student> retrieved = service.findById(student.getId());
+    if (retrieved.isPresent()) {
+      student.setCourses(retrieved.get().getCourses());
+      return Optional.of(service.save(student));
+    }
+    return Optional.empty();
+  }
+
   public List<Student> listStudents(){
     return service.findAll();
   }
