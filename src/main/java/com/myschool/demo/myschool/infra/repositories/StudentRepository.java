@@ -14,4 +14,7 @@ public interface StudentRepository extends JpaRepository<StudentDto, Long> {
   @Query(value = "SELECT s from StudentDto s inner join s.courses c where c.id =:id")
   Optional<List<StudentDto>> findByCourseId(Long id);
 
+  @Query(value = "select s.* from student s left join student_course sc on sc.student_id = s.id where sc.student_id is null", nativeQuery = true)
+  Optional<List<StudentDto>> findStudentsWithoutEnrollments();
+
 }

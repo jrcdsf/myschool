@@ -20,7 +20,7 @@ public class ReportsController {
   private ReportsUseCase useCase;
 
   @GetMapping("/students")
-  public ResponseEntity<List<Student>> studentReport(@RequestParam(required = true) String course){
+  public ResponseEntity<List<Student>> studentReport(@RequestParam String course){
     Optional<List<Student>> response = useCase.findStudentsByCourse(course);
     return response.map(students -> new ResponseEntity<>(students, HttpStatus.OK))
         .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));

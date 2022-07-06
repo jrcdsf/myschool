@@ -36,4 +36,12 @@ public class StudentCourseService implements StudentCourseServiceInterface {
   public Optional<List<Course>> findCoursesByStudentId(long id) {
     return Optional.empty();
   }
+
+  @Override
+  public Optional<List<Student>> findStudentsWithoutEnrollments() {
+    Optional<List<StudentDto>> students = repository.findStudentsWithoutEnrollments();
+    return students.map(studentDtos -> studentDtos.stream()
+        .map(s -> mapper.toStudent(s, new CycleAvoidingMappingContext())).collect(
+            Collectors.toList()));
+  }
 }

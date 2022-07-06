@@ -1,6 +1,5 @@
 package com.myschool.demo.myschool.controllers;
 
-import com.myschool.demo.myschool.core.entities.Course;
 import com.myschool.demo.myschool.core.entities.Student;
 import com.myschool.demo.myschool.core.usecases.StudentUseCase;
 import com.myschool.demo.myschool.infra.models.CreateStudentRequest;
