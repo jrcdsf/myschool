@@ -55,8 +55,8 @@ public class StudentDto implements Serializable {
       })
   @JoinTable(
       name = "student_course",
-      joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"),
-      inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id")
+      joinColumns = @JoinColumn(name = "student_id"),
+      inverseJoinColumns = @JoinColumn(name = "course_id")
   )
   private Set<CourseDto> courses = new HashSet<>();
 
