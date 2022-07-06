@@ -112,4 +112,8 @@ GET http://localhost:8080/reports/courses?student_id=2
 
 GET http://localhost:8080/reports/courses?student_id=-1
 
+## Technologies
+
+Java 11, Spring Boot, Lombok, MySQL, Mapstruct, Gradle, Docker, 
+
 
