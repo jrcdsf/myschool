@@ -25,9 +25,8 @@ public class ReportsUseCase {
   }
 
   public Optional<List<Student>> findStudentsByCourse(String course) {
-    if (course.equalsIgnoreCase("none")) {
+    if (course.equalsIgnoreCase("none"))
       return studentCourseService.findStudentsWithoutEnrollments();
-    }
     Optional<Course> retrievedCourse = courseService.findByName(course);
     if (retrievedCourse.isPresent()){
       return studentCourseService.findStudentsByCourseId(retrievedCourse.get().getId());
@@ -36,6 +35,8 @@ public class ReportsUseCase {
   }
 
   public Optional<List<Course>> findCoursesByStudent(long id) {
+    if (id < 0)
+      return studentCourseService.findCoursesWithoutEnrollments();
     Optional<Student> retrievedStudent = studentService.findById(id);
     if (retrievedStudent.isPresent()) {
       return studentCourseService.findCoursesByStudentId(id);

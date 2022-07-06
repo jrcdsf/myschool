@@ -58,4 +58,12 @@ public class StudentCourseService implements StudentCourseServiceInterface {
         .map(s -> studentMapper.toStudent(s, new CycleAvoidingMappingContext())).collect(
             Collectors.toList()));
   }
+
+  @Override
+  public Optional<List<Course>> findCoursesWithoutEnrollments() {
+    Optional<List<CourseDto>> students = courseRepository.findCoursesWithoutEnrollments();
+    return students.map(courseDtos -> courseDtos.stream()
+        .map(c -> courseMapper.toCourse(c, new CycleAvoidingMappingContext())).collect(
+            Collectors.toList()));
+  }
 }

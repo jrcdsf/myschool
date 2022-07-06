@@ -1,6 +1,7 @@
 package com.myschool.demo.myschool.infra.repositories;
 
 import com.myschool.demo.myschool.infra.entities.CourseDto;
+import com.myschool.demo.myschool.infra.entities.StudentDto;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,4 +14,7 @@ public interface CourseRepository extends JpaRepository<CourseDto, Long> {
 
   @Query(value = "select * from course c where c.id in (select sc.course_id from student_course sc where sc.student_id = ?1)", nativeQuery = true)
   Optional<List<CourseDto>> findByStudentId(long id);
+
+  @Query(value = "select c.* from course c left join student_course sc on sc.course_id = c.id where sc.course_id is null", nativeQuery = true)
+  Optional<List<CourseDto>> findCoursesWithoutEnrollments();
 }
