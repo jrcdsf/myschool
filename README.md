@@ -2,9 +2,31 @@
 
 Author: Jose Roberto Filho (jrcdsf@gmail.com)
 
-Endpoints
+## Project setup
 
-## Course Module
+- Clone Github
+
+`$ git clone https://github.com/jrcdsf/myschool.git`
+
+- Open project into IntelliJ IDE
+
+- Run Docker Compose to start up the local services
+
+`$ docker-compose up -d`
+
+- Run MyschoolApplication on IntelliJ to start the application
+
+- Run tests using Insomnia or Postman using the Endpoints below
+
+- Stop MyschoolApplication on Intellij to stop the application
+
+- Run Docker Compose to stop the local services
+
+`$ docker-compose down`
+
+## Endpoints
+
+### Course Module
 
 - Create course
 
@@ -37,7 +59,7 @@ GET http://localhost:8080/courses/1
 
 GET http://localhost:8080/courses?name=COURSE%20002
 
-## Student Module
+### Student Module
 
 - Create student
 
@@ -72,7 +94,7 @@ GET http://localhost:8080/students/1
 
 GET http://localhost:8080/students?name=Student%202
 
-## Reports Module
+### Reports Module
 
 - Filter all students with a specific course
 
