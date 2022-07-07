@@ -24,7 +24,9 @@ public class CourseService implements CourseServiceInterface {
 
   @Override
   public Course save(Course course) {
-    return mapper.toCourse(repository.save(mapper.toCourseDto(course, new CycleAvoidingMappingContext())),new CycleAvoidingMappingContext());
+    return mapper.toCourse(
+        repository.save(mapper.toCourseDto(course, new CycleAvoidingMappingContext())),
+        new CycleAvoidingMappingContext());
   }
 
   @Override
@@ -39,18 +41,20 @@ public class CourseService implements CourseServiceInterface {
 
   @Override
   public List<Course> findAll() {
-    return repository.findAll().stream().map(c -> mapper.toCourse(c,new CycleAvoidingMappingContext())).collect(Collectors.toList());
+    return repository.findAll().stream()
+        .map(c -> mapper.toCourse(c, new CycleAvoidingMappingContext()))
+        .collect(Collectors.toList());
   }
 
   @Override
   public Optional<Course> findById(long id) {
-    return Optional.ofNullable(mapper.toCourse(repository.findById(id).orElse(null),new CycleAvoidingMappingContext()));
+    return Optional.ofNullable(
+        mapper.toCourse(repository.findById(id).orElse(null), new CycleAvoidingMappingContext()));
   }
 
   @Override
   public Optional<Course> findByName(String name) {
-    Optional<CourseDto> courseDto = repository.findByName(
-        name);
+    Optional<CourseDto> courseDto = repository.findByName(name);
     if (courseDto.isPresent()) {
       Course res = mapper.toCourse(courseDto.get(), new CycleAvoidingMappingContext());
       return Optional.of(res);

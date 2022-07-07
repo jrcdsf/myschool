@@ -8,5 +8,4 @@ public class CreateStudentRequest {
   private String name;
   private String birth;
   private String gender;
-
 }

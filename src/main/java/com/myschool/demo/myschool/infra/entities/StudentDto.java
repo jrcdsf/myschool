@@ -29,18 +29,17 @@ import org.hibernate.Hibernate;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "student")
-@JsonIdentityInfo(
-    generator = ObjectIdGenerators.PropertyGenerator.class,
-    property = "id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class StudentDto implements Serializable {
 
   private static final long serialVersionUID = 4697620279185292652L;
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO, generator = "student_id_seq")
   @Column(name = "id", nullable = false)
   private Long id;
 
-  @Column(name ="name", nullable = false)
+  @Column(name = "name", nullable = false)
   private String name;
 
   @Column(name = "birth", nullable = false)
@@ -49,15 +48,13 @@ public class StudentDto implements Serializable {
   @Column(name = "gender", nullable = false)
   private String gender;
 
-  @ManyToMany(fetch = FetchType.LAZY,
-      cascade = {
-          CascadeType.PERSIST
-      })
+  @ManyToMany(
+      fetch = FetchType.LAZY,
+      cascade = {CascadeType.PERSIST})
   @JoinTable(
       name = "student_course",
       joinColumns = @JoinColumn(name = "student_id"),
-      inverseJoinColumns = @JoinColumn(name = "course_id")
-  )
+      inverseJoinColumns = @JoinColumn(name = "course_id"))
   private Set<CourseDto> courses = new HashSet<>();
 
   @Override

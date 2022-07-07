@@ -27,7 +27,7 @@ public class CourseUseCase {
     return Optional.empty();
   }
 
-  public List<Course> listCourses(){
+  public List<Course> listCourses() {
     return service.findAll();
   }
 
@@ -42,5 +42,4 @@ public class CourseUseCase {
   public Optional<Course> findCourse(String name) {
     return service.findByName(name);
   }
-
 }

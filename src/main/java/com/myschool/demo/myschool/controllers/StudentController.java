@@ -25,8 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/students")
 public class StudentController {
 
-  @Autowired
-  private StudentUseCase useCase;
+  @Autowired private StudentUseCase useCase;
 
   @PostMapping
   @ResponseBody
@@ -37,21 +36,24 @@ public class StudentController {
 
   @PatchMapping
   @ResponseBody
-  public ResponseEntity<Student> updateStudent(@RequestBody UpdateStudentRequest request){
-    Optional<Student> response = useCase.updateStudent(
-        new Student(request.getId(), request.getName(), request.getBirth(), request.getGender()));
-    return response.map(student -> new ResponseEntity<>(student, HttpStatus.OK))
+  public ResponseEntity<Student> updateStudent(@RequestBody UpdateStudentRequest request) {
+    Optional<Student> response =
+        useCase.updateStudent(
+            new Student(
+                request.getId(), request.getName(), request.getBirth(), request.getGender()));
+    return response
+        .map(student -> new ResponseEntity<>(student, HttpStatus.OK))
         .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
   }
 
   @GetMapping
   @ResponseBody
-  public ResponseEntity<List<Student>> listStudents(@RequestParam(required = false, defaultValue = "") String name) {
+  public ResponseEntity<List<Student>> listStudents(
+      @RequestParam(required = false, defaultValue = "") String name) {
     if (name.isEmpty()) {
       List<Student> response = useCase.listStudents();
       return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-    else {
+    } else {
       Optional<Student> response = useCase.findStudent(name);
       List<Student> list = new ArrayList<>();
       if (response.isPresent()) {
@@ -67,14 +69,13 @@ public class StudentController {
 
     Optional<Student> response = useCase.findStudent(id);
     return response
-        .map(student  -> new ResponseEntity<>(student, HttpStatus.OK))
+        .map(student -> new ResponseEntity<>(student, HttpStatus.OK))
         .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
   }
 
   @DeleteMapping(value = "/{id}")
   public ResponseEntity<Long> deleteStudent(@PathVariable long id) {
-    if (useCase.deleteStudent(id))
-      return new ResponseEntity<>(id, HttpStatus.OK);
+    if (useCase.deleteStudent(id)) return new ResponseEntity<>(id, HttpStatus.OK);
     else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 }

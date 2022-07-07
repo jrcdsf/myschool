@@ -1,9 +1,8 @@
 package com.myschool.demo.myschool.core.exceptions;
 
-public class MaxNumberOfStudentEnrollmentsException extends BusinessException{
+public class MaxNumberOfStudentEnrollmentsException extends BusinessException {
 
-  public MaxNumberOfStudentEnrollmentsException() {
-  }
+  public MaxNumberOfStudentEnrollmentsException() {}
 
   public MaxNumberOfStudentEnrollmentsException(String message) {
     super(message);

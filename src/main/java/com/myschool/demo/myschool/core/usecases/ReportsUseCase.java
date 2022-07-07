@@ -16,7 +16,8 @@ public class ReportsUseCase {
   private final CourseServiceInterface courseService;
   private final StudentCourseServiceInterface studentCourseService;
 
-  public ReportsUseCase(StudentServiceInterface studentService,
+  public ReportsUseCase(
+      StudentServiceInterface studentService,
       CourseServiceInterface courseService,
       StudentCourseServiceInterface studentCourseService) {
     this.studentService = studentService;
@@ -28,15 +29,14 @@ public class ReportsUseCase {
     if (course.equalsIgnoreCase("none"))
       return studentCourseService.findStudentsWithoutEnrollments();
     Optional<Course> retrievedCourse = courseService.findByName(course);
-    if (retrievedCourse.isPresent()){
+    if (retrievedCourse.isPresent()) {
       return studentCourseService.findStudentsByCourseId(retrievedCourse.get().getId());
     }
     return Optional.empty();
   }
 
   public Optional<List<Course>> findCoursesByStudent(long id) {
-    if (id < 0)
-      return studentCourseService.findCoursesWithoutEnrollments();
+    if (id < 0) return studentCourseService.findCoursesWithoutEnrollments();
     Optional<Student> retrievedStudent = studentService.findById(id);
     if (retrievedStudent.isPresent()) {
       return studentCourseService.findCoursesByStudentId(id);

@@ -5,8 +5,7 @@ public class Course {
   private String name;
   private String description;
 
-  public Course() {
-  }
+  public Course() {}
 
   public Course(String name, String description) {
     this.name = name;
@@ -45,10 +44,15 @@ public class Course {
 
   @Override
   public String toString() {
-    return "Course{" +
-        "id=" + id +
-        ", name='" + name + '\'' +
-        ", description='" + description + '\'' +
-        '}';
+    return "Course{"
+        + "id="
+        + id
+        + ", name='"
+        + name
+        + '\''
+        + ", description='"
+        + description
+        + '\''
+        + '}';
   }
 }

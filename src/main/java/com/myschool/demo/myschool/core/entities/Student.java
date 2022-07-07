@@ -12,8 +12,7 @@ public class Student {
 
   private Set<Course> courses = new HashSet<>();
 
-  public Student() {
-  }
+  public Student() {}
 
   public Student(String name, String birth, String gender) {
     this.name = name;
@@ -70,12 +69,20 @@ public class Student {
 
   @Override
   public String toString() {
-    return "Student{" +
-        "id=" + id +
-        ", name='" + name + '\'' +
-        ", birth='" + birth + '\'' +
-        ", gender='" + gender + '\'' +
-        ", courses=" + courses +
-        '}';
+    return "Student{"
+        + "id="
+        + id
+        + ", name='"
+        + name
+        + '\''
+        + ", birth='"
+        + birth
+        + '\''
+        + ", gender='"
+        + gender
+        + '\''
+        + ", courses="
+        + courses
+        + '}';
   }
 }

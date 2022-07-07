@@ -25,9 +25,11 @@ public class StudentCourseService implements StudentCourseServiceInterface {
 
   private final CourseMapper courseMapper;
 
-  public StudentCourseService(StudentRepository studentRepository,
+  public StudentCourseService(
+      StudentRepository studentRepository,
       CourseRepository courseRepository,
-      StudentMapper studentMapper, CourseMapper courseMapper) {
+      StudentMapper studentMapper,
+      CourseMapper courseMapper) {
     this.studentRepository = studentRepository;
     this.courseRepository = courseRepository;
     this.studentMapper = studentMapper;
@@ -36,34 +38,41 @@ public class StudentCourseService implements StudentCourseServiceInterface {
 
   @Override
   public Optional<List<Student>> findStudentsByCourseId(long id) {
-    Optional<List<StudentDto>> students = studentRepository.findByCourseId(
-        id);
-    return students.map(studentDtos -> studentDtos.stream()
-        .map(s -> studentMapper.toStudent(s, new CycleAvoidingMappingContext())).collect(
-            Collectors.toList()));
+    Optional<List<StudentDto>> students = studentRepository.findByCourseId(id);
+    return students.map(
+        studentDtos ->
+            studentDtos.stream()
+                .map(s -> studentMapper.toStudent(s, new CycleAvoidingMappingContext()))
+                .collect(Collectors.toList()));
   }
 
   @Override
   public Optional<List<Course>> findCoursesByStudentId(long id) {
-    Optional<List<CourseDto>> courses = courseRepository.findByStudentId(
-        id);
-    return courses.map(courseDtos -> courseDtos.stream().map(c -> courseMapper.toCourse(c, new CycleAvoidingMappingContext())).collect(
-        Collectors.toList()));
+    Optional<List<CourseDto>> courses = courseRepository.findByStudentId(id);
+    return courses.map(
+        courseDtos ->
+            courseDtos.stream()
+                .map(c -> courseMapper.toCourse(c, new CycleAvoidingMappingContext()))
+                .collect(Collectors.toList()));
   }
 
   @Override
   public Optional<List<Student>> findStudentsWithoutEnrollments() {
     Optional<List<StudentDto>> students = studentRepository.findStudentsWithoutEnrollments();
-    return students.map(studentDtos -> studentDtos.stream()
-        .map(s -> studentMapper.toStudent(s, new CycleAvoidingMappingContext())).collect(
-            Collectors.toList()));
+    return students.map(
+        studentDtos ->
+            studentDtos.stream()
+                .map(s -> studentMapper.toStudent(s, new CycleAvoidingMappingContext()))
+                .collect(Collectors.toList()));
   }
 
   @Override
   public Optional<List<Course>> findCoursesWithoutEnrollments() {
     Optional<List<CourseDto>> students = courseRepository.findCoursesWithoutEnrollments();
-    return students.map(courseDtos -> courseDtos.stream()
-        .map(c -> courseMapper.toCourse(c, new CycleAvoidingMappingContext())).collect(
-            Collectors.toList()));
+    return students.map(
+        courseDtos ->
+            courseDtos.stream()
+                .map(c -> courseMapper.toCourse(c, new CycleAvoidingMappingContext()))
+                .collect(Collectors.toList()));
   }
 }

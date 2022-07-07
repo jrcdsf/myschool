@@ -26,12 +26,14 @@ public class StudentService implements StudentServiceInterface {
 
   @Override
   public Student save(Student student) {
-    return mapper.toStudent(repository.save(mapper.toStudentDto(student, new CycleAvoidingMappingContext())), new CycleAvoidingMappingContext());
+    return mapper.toStudent(
+        repository.save(mapper.toStudentDto(student, new CycleAvoidingMappingContext())),
+        new CycleAvoidingMappingContext());
   }
 
   @Override
   public boolean delete(long id) {
-    if (repository.existsById(id)){
+    if (repository.existsById(id)) {
       repository.deleteStudentCourseByStudentId(id);
       repository.deleteById(id);
       return true;
@@ -43,7 +45,9 @@ public class StudentService implements StudentServiceInterface {
   public List<Student> findAll() {
     try {
       List<StudentDto> students = repository.findAll();
-      return students.stream().map(s -> mapper.toStudent(s, new CycleAvoidingMappingContext())).collect(Collectors.toList());
+      return students.stream()
+          .map(s -> mapper.toStudent(s, new CycleAvoidingMappingContext()))
+          .collect(Collectors.toList());
     } catch (RuntimeException e) {
       log.error("Find all error ", e);
       throw e;
@@ -52,7 +56,8 @@ public class StudentService implements StudentServiceInterface {
 
   @Override
   public Optional<Student> findById(long id) {
-    return Optional.ofNullable(mapper.toStudent(repository.findById(id).orElse(null),new CycleAvoidingMappingContext()));
+    return Optional.ofNullable(
+        mapper.toStudent(repository.findById(id).orElse(null), new CycleAvoidingMappingContext()));
   }
 
   @Override

@@ -6,9 +6,14 @@ import java.util.Optional;
 
 public interface CourseServiceInterface {
   Course save(Course course);
+
   boolean delete(long id);
+
   List<Course> findAll();
+
   Optional<Course> findById(long id);
+
   Optional<Course> findByName(String name);
+
   int countStudentsByCourse(long id);
 }

@@ -12,7 +12,7 @@ public interface CourseMapper {
 
   CourseMapper MAPPER = Mappers.getMapper(CourseMapper.class);
 
-  Course toCourse(CourseDto courseDto, @Context CycleAvoidingMappingContext context );
+  Course toCourse(CourseDto courseDto, @Context CycleAvoidingMappingContext context);
 
   @InheritInverseConfiguration
   CourseDto toCourseDto(Course course, @Context CycleAvoidingMappingContext context);

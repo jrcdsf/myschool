@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
+import com.myschool.demo.myschool.common.BaseTest;
 import com.myschool.demo.myschool.core.entities.Student;
 import com.myschool.demo.myschool.infra.services.StudentService;
 import java.util.ArrayList;
@@ -13,20 +14,16 @@ import java.util.Optional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
-@ExtendWith(MockitoExtension.class)
-class StudentUseCaseTest {
+class StudentUseCaseTest extends BaseTest {
 
-  @Mock
-  private StudentService serviceMock;
+  @Mock private StudentService serviceMock;
 
   private StudentUseCase useCaseMock;
 
-  private final Student student1 = new Student("Name1","Birth1","Gender1");
-  private final Student student2 = new Student("Name2","Birth2","Gender2");
+  private final Student student1 = new Student("Name1", "Birth1", "Gender1");
+  private final Student student2 = new Student("Name2", "Birth2", "Gender2");
 
   private List<Student> studentList = new ArrayList<>();
 
@@ -83,7 +80,6 @@ class StudentUseCaseTest {
     Optional<Student> actual = useCaseMock.findStudent(student1.getId());
     Assertions.assertTrue(actual.isPresent());
     Assertions.assertEquals(student1, actual.get());
-
   }
 
   @Test
@@ -93,6 +89,5 @@ class StudentUseCaseTest {
     Optional<Student> actual = useCaseMock.findStudent(student1.getName());
     Assertions.assertTrue(actual.isPresent());
     Assertions.assertEquals(student1, actual.get());
-
   }
 }

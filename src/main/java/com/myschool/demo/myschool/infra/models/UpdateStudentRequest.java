@@ -9,5 +9,4 @@ public class UpdateStudentRequest {
   private String name;
   private String birth;
   private String gender;
-
 }

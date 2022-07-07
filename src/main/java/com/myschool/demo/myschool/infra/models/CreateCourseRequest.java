@@ -7,5 +7,4 @@ public class CreateCourseRequest {
 
   private String name;
   private String description;
-
 }

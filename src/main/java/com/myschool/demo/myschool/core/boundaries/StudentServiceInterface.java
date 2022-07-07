@@ -6,8 +6,12 @@ import java.util.Optional;
 
 public interface StudentServiceInterface {
   Student save(Student student);
+
   boolean delete(long id);
+
   List<Student> findAll();
+
   Optional<Student> findById(long id);
+
   Optional<Student> findByName(String name);
 }

@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
+import com.myschool.demo.myschool.common.BaseTest;
 import com.myschool.demo.myschool.core.entities.Course;
 import com.myschool.demo.myschool.infra.services.CourseService;
 import java.util.ArrayList;
@@ -13,15 +14,11 @@ import java.util.Optional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
-@ExtendWith(MockitoExtension.class)
-class CourseUseCaseTest {
+class CourseUseCaseTest extends BaseTest {
 
-  @Mock
-  private CourseService serviceMock;
+  @Mock private CourseService serviceMock;
 
   private CourseUseCase useCaseMock;
 

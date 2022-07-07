@@ -17,23 +17,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/reports")
 public class ReportsController {
 
-  @Autowired
-  private ReportsUseCase useCase;
+  @Autowired private ReportsUseCase useCase;
 
   @GetMapping("/students")
-  public ResponseEntity<List<Student>> studentReport(@RequestParam String course){
+  public ResponseEntity<List<Student>> studentReport(@RequestParam String course) {
     Optional<List<Student>> response = useCase.findStudentsByCourse(course);
-    return response.map(students -> new ResponseEntity<>(students, HttpStatus.OK))
+    return response
+        .map(students -> new ResponseEntity<>(students, HttpStatus.OK))
         .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
   }
 
   @GetMapping("/courses")
   public ResponseEntity<List<Course>> courseReport(@RequestParam long student_id) {
     Optional<List<Course>> response = useCase.findCoursesByStudent(student_id);
-    return response.map(students -> new ResponseEntity<>(students, HttpStatus.OK))
+    return response
+        .map(students -> new ResponseEntity<>(students, HttpStatus.OK))
         .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
   }
-
-
-
 }

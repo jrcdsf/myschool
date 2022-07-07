@@ -8,8 +8,10 @@ import java.util.Optional;
 public interface StudentCourseServiceInterface {
 
   Optional<List<Student>> findStudentsByCourseId(long id);
-  Optional<List<Course>> findCoursesByStudentId(long id);
-  Optional<List<Student>> findStudentsWithoutEnrollments();
-  Optional<List<Course>> findCoursesWithoutEnrollments();
 
+  Optional<List<Course>> findCoursesByStudentId(long id);
+
+  Optional<List<Student>> findStudentsWithoutEnrollments();
+
+  Optional<List<Course>> findCoursesWithoutEnrollments();
 }

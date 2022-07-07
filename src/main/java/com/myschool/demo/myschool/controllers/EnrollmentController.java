@@ -16,15 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/enrollments")
 public class EnrollmentController {
 
-  @Autowired
-  private EnrollmentUseCase useCase;
+  @Autowired private EnrollmentUseCase useCase;
 
   @PatchMapping(value = "/student/{studentId}/course/{courseId}")
-  public ResponseEntity<Student> enrollStudentToCourse(@PathVariable long studentId, @PathVariable long courseId)
-      throws BusinessException {
+  public ResponseEntity<Student> enrollStudentToCourse(
+      @PathVariable long studentId, @PathVariable long courseId) throws BusinessException {
     Optional<Student> response = useCase.enrollToCourse(studentId, courseId);
-    return response.map(student -> new ResponseEntity<>(student, HttpStatus.OK))
+    return response
+        .map(student -> new ResponseEntity<>(student, HttpStatus.OK))
         .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
   }
-
 }

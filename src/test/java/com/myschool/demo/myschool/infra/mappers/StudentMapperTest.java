@@ -2,6 +2,7 @@ package com.myschool.demo.myschool.infra.mappers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.myschool.demo.myschool.common.BaseTest;
 import com.myschool.demo.myschool.core.entities.Course;
 import com.myschool.demo.myschool.core.entities.Student;
 import com.myschool.demo.myschool.infra.entities.CourseDto;
@@ -10,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 
-class StudentMapperTest {
+class StudentMapperTest extends BaseTest {
 
   @Test
   void testMapDtoToEntity() {
@@ -38,7 +39,7 @@ class StudentMapperTest {
   }
 
   @Test
-  void testMapEntityToDto(){
+  void testMapEntityToDto() {
     Student student = new Student();
     student.setId(1L);
     student.setName("JR");
@@ -54,13 +55,11 @@ class StudentMapperTest {
     list.add(course);
     student.setCourses(list);
 
-    StudentDto studentDto = StudentMapper.MAPPER.toStudentDto(student, new CycleAvoidingMappingContext());
+    StudentDto studentDto =
+        StudentMapper.MAPPER.toStudentDto(student, new CycleAvoidingMappingContext());
     assertThat(studentDto).isNotNull();
     Set<CourseDto> coursesDto = studentDto.getCourses();
     assertThat(coursesDto).isNotNull().hasSize(1);
     System.out.println(student);
-
-
   }
-
 }

@@ -11,6 +11,7 @@ import org.mapstruct.factory.Mappers;
 public interface StudentMapper {
 
   StudentMapper MAPPER = Mappers.getMapper(StudentMapper.class);
+
   Student toStudent(StudentDto studentDto, @Context CycleAvoidingMappingContext context);
 
   @InheritInverseConfiguration

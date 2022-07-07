@@ -1,15 +1,15 @@
 package com.myschool.demo.myschool.infra.entities;
 
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.StringContains.containsStringIgnoringCase;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.myschool.demo.myschool.common.BaseTest;
 import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
-class StudentDtoTest {
+class StudentDtoTest extends BaseTest {
 
   @Test
   void givenBidirectionRelation_whenUsingJsonIdentityInfo_thenCorrect()
@@ -34,5 +34,5 @@ class StudentDtoTest {
     assertThat(result, containsStringIgnoringCase("JR"));
     assertThat(result, containsStringIgnoringCase("course 001"));
     System.out.println(result);
-    }
   }
+}

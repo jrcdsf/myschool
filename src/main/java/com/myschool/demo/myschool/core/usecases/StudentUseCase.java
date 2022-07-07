@@ -28,7 +28,7 @@ public class StudentUseCase {
     return Optional.empty();
   }
 
-  public List<Student> listStudents(){
+  public List<Student> listStudents() {
     return service.findAll();
   }
 
