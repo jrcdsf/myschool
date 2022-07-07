@@ -30,25 +30,22 @@ public class EnrollmentUseCase {
     this.studentService = studentService;
   }
 
-  public Optional<Student> enrollToCourse(long studentId, long courseId)
-      throws BusinessException {
+  public Optional<Student> enrollToCourse(long studentId, long courseId) throws BusinessException {
     Optional<Student> student = studentService.findById(studentId);
     if (student.isPresent()) {
       Optional<Course> course = courseService.findById(courseId);
       if (course.isPresent()) {
         if (courseService.countStudentsByCourse(courseId) == courseMaxLimitEnrollments)
-          throw new MaxNumberOfStudentEnrollmentsException("Max number of students enrolled reached " + courseMaxLimitEnrollments);
+          throw new MaxNumberOfStudentEnrollmentsException(
+              "Max number of students enrolled reached " + courseMaxLimitEnrollments);
         Set<Course> currentCourses = student.get().getCourses();
         if (currentCourses.size() == studentMaxLimitEnrollments)
-          throw new MaxNumberOfCourseEnrollmentsException("Max number of course enrollments reached " + studentMaxLimitEnrollments);
-        if (currentCourses.stream().filter(c -> c.getId() == courseId).findFirst().orElse(null)
-            == null) {
-          currentCourses.add(course.get());
-          Student retrieved = student.get();
-          retrieved.setCourses(currentCourses);
-          studentService.save(retrieved);
-          return student;
-        }
+          throw new MaxNumberOfCourseEnrollmentsException(
+              "Max number of course enrollments reached " + studentMaxLimitEnrollments);
+        currentCourses.add(course.get());
+        Student retrieved = student.get();
+        retrieved.setCourses(currentCourses);
+        return Optional.ofNullable(studentService.save(retrieved));
       }
     }
     return Optional.empty();
