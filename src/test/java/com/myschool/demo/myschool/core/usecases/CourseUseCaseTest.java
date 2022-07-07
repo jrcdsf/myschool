@@ -1,13 +1,11 @@
 package com.myschool.demo.myschool.core.usecases;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 import com.myschool.demo.myschool.core.entities.Course;
-import com.myschool.demo.myschool.core.entities.Student;
 import com.myschool.demo.myschool.infra.services.CourseService;
 import java.util.ArrayList;
 import java.util.List;

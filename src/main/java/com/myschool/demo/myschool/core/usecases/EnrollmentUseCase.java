@@ -35,11 +35,11 @@ public class EnrollmentUseCase {
     if (student.isPresent()) {
       Optional<Course> course = courseService.findById(courseId);
       if (course.isPresent()) {
-        if (courseService.countStudentsByCourse(courseId) == courseMaxLimitEnrollments)
+        if (courseService.countStudentsByCourse(courseId) >= courseMaxLimitEnrollments)
           throw new MaxNumberOfStudentEnrollmentsException(
               "Max number of students enrolled reached " + courseMaxLimitEnrollments);
         Set<Course> currentCourses = student.get().getCourses();
-        if (currentCourses.size() == studentMaxLimitEnrollments)
+        if (currentCourses.size() >= studentMaxLimitEnrollments)
           throw new MaxNumberOfCourseEnrollmentsException(
               "Max number of course enrollments reached " + studentMaxLimitEnrollments);
         currentCourses.add(course.get());
