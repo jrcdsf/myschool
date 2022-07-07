@@ -56,11 +56,11 @@ public class StudentService implements StudentServiceInterface {
   }
 
   @Override
-  public Optional<List<Student>> findByName(String name) {
-    Optional<List<StudentDto>> list = repository.findByName(name);
-    if (list.isPresent()) {
-      List<Student> res = list.get().stream().map(s -> mapper.toStudent(s, new CycleAvoidingMappingContext()))
-          .collect(Collectors.toList());
+  public Optional<Student> findByName(String name) {
+    Optional<StudentDto> studentDto = repository.findByName(name);
+    if (studentDto.isPresent()) {
+      Student res = mapper.toStudent(studentDto.get(), new CycleAvoidingMappingContext());
+
       return Optional.of(res);
     }
     return Optional.empty();

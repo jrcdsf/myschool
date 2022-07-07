@@ -1,7 +1,6 @@
 package com.myschool.demo.myschool.infra.repositories;
 
 import com.myschool.demo.myschool.infra.entities.CourseDto;
-import com.myschool.demo.myschool.infra.entities.StudentDto;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;

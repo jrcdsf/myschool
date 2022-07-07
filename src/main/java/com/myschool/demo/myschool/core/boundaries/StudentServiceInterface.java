@@ -9,5 +9,5 @@ public interface StudentServiceInterface {
   boolean delete(long id);
   List<Student> findAll();
   Optional<Student> findById(long id);
-  Optional<List<Student>> findByName(String name);
+  Optional<Student> findByName(String name);
 }

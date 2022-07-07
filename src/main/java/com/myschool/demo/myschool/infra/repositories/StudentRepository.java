@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StudentRepository extends JpaRepository<StudentDto, Long> {
-  Optional<List<StudentDto>> findByName(String name);
+  Optional<StudentDto> findByName(String name);
 
   @Query(value = "SELECT s from StudentDto s inner join s.courses c where c.id =:id")
   Optional<List<StudentDto>> findByCourseId(Long id);

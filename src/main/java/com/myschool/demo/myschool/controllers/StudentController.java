@@ -4,6 +4,7 @@ import com.myschool.demo.myschool.core.entities.Student;
 import com.myschool.demo.myschool.core.usecases.StudentUseCase;
 import com.myschool.demo.myschool.infra.models.CreateStudentRequest;
 import com.myschool.demo.myschool.infra.models.UpdateStudentRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,10 +52,12 @@ public class StudentController {
       return new ResponseEntity<>(response, HttpStatus.OK);
     }
     else {
-      Optional<List<Student>> response = useCase.findStudent(name);
-      return response
-          .map(student -> new ResponseEntity<>(student, HttpStatus.OK))
-          .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+      Optional<Student> response = useCase.findStudent(name);
+      List<Student> list = new ArrayList<>();
+      if (response.isPresent()) {
+        list.add(response.get());
+        return new ResponseEntity<>(list, HttpStatus.OK);
+      } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
 

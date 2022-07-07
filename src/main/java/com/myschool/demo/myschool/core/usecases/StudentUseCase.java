@@ -40,7 +40,7 @@ public class StudentUseCase {
     return service.findById(id);
   }
 
-  public Optional<List<Student>> findStudent(String name) {
+  public Optional<Student> findStudent(String name) {
     return service.findByName(name);
   }
 }
