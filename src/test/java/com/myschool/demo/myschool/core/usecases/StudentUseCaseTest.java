@@ -48,7 +48,7 @@ class StudentUseCaseTest {
   }
 
   @Test
-  void updateStudent() {
+  void updateStudentTest() {
     when(serviceMock.findById(anyLong())).thenReturn(Optional.of(student1));
     when(serviceMock.save(any())).thenReturn(student1);
 
@@ -59,7 +59,7 @@ class StudentUseCaseTest {
   }
 
   @Test
-  void listStudents() {
+  void listStudentsTest() {
     when(serviceMock.findAll()).thenReturn(studentList);
 
     List<Student> actual = useCaseMock.listStudents();
@@ -68,7 +68,7 @@ class StudentUseCaseTest {
   }
 
   @Test
-  void deleteStudent() {
+  void deleteStudentTest() {
     when(serviceMock.delete(anyLong())).thenReturn(true);
 
     boolean response = useCaseMock.deleteStudent(anyLong());
@@ -77,7 +77,7 @@ class StudentUseCaseTest {
   }
 
   @Test
-  void findStudentById() {
+  void findStudentByIdTest() {
     when(serviceMock.findById(anyLong())).thenReturn(Optional.of(student1));
 
     Optional<Student> actual = useCaseMock.findStudent(student1.getId());
@@ -87,7 +87,7 @@ class StudentUseCaseTest {
   }
 
   @Test
-  void findStudentByName() {
+  void findStudentByNameTest() {
     when(serviceMock.findByName(anyString())).thenReturn(Optional.of(student1));
 
     Optional<Student> actual = useCaseMock.findStudent(student1.getName());
